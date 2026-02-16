@@ -1,0 +1,29 @@
+/* Styles for the map and slideshow */
+.slideshow {
+  position: relative;
+  width: 320px;
+}
+
+.slide {
+  display: none;
+  width: 100%;
+  border-radius: 10px;
+  align-items: center;
+}
+
+.slideshow button {
+  position: absolute;
+  top: 45%;
+  background: rgba(0,0,0,0.4);
+  color: white;
+  border: none;
+  padding: 4px 8px;
+  cursor: pointer;
+}
+
+#map { height: 90vh; }
+    .slide { display: none; }
+    .slide.active { display: block; }
+
+.slideshow button:first-of-type { left: 0; }
+.slideshow button:last-of-type { right: 0; }
