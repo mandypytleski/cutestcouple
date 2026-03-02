@@ -1,11 +1,160 @@
 <!DOCTYPE html>
 <html>
 <head>
-    
+    <title>The Cutest Couple Ever</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/png" href="images/logo.png">
 </head>
+
 <body>
+<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
+  <div class="container-fluid">
 
-<a href="map/index.html">View Our Map</a>
+    <!-- Logo -->
+    <a class="navbar-brand fw-semibold" href="#"> 
+      <img src="images/logo.png" alt="Logo" height="40">
+    </a>
 
+    <!-- Hamburger -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Nav Links -->
+    <div class="collapse navbar-collapse" id="mainNav">
+      <ul class="navbar-nav mx-auto">
+        
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#">All About Us</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#">All About Ian</a></li>
+            <li><a class="dropdown-item" href="#">All About Mandy</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="#">Us Together</a></li>
+          </ul>
+        </li>
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#">Memories</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#">Photos</a></li>
+            <li><a class="dropdown-item" href="#">Videos</a></li>
+            <li><a class="dropdown-item" href="fun/map/map.html">Our Map</a></li>
+          </ul>
+        </li>
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#">Fun</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#">Movies</a></li>
+            <li><a class="dropdown-item" href="#">Our Watchlist</a></li>
+            <li><a class="dropdown-item" href="#">The Perfect Playlist</a></li>
+          </ul>
+        </li>
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#">Our Future</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#">Countdowns</a></li>
+            <li><a class="dropdown-item" href="#">Bucket List</a></li>
+            <li><a class="dropdown-item" href="#">Open When...</a></li>
+          </ul>
+        </li>
+
+      </ul>
+    </div>
+
+  </div>
+</nav>
+
+<!--INTRO SECTION-->
+<div class="container col-xxl-8 px-4 pt-3 pb-5">
+  <div class="row flex-lg-row-reverse align-items-center g-5 pt-0 pb-5">
+    <div class="col-10 col-sm-8 col-lg-6"> 
+      <img src="images/polaroids.png" class="d-block mx-lg-auto img-fluid" alt="Bootstrap Themes" width="700" height="500" loading="lazy"> 
+    </div> 
+    <div class="col-lg-6"> <h1 class="display-5 fw-bold text-body-emphasis lh-1 mb-3">The Cutest Couple Ever</h1> 
+    <p class="lead">Welcome to our corner of the internet.<br>This site is where we keep our photos, favorite memories, playlists, plans, and everything that’s part of our story. It’s a space to look back on where we’ve been — and keep track of where we’re going.</p> 
+    </div>
+  </div>
+</div>
+
+<!--BIRTHDAY SECTION-->
+<section class="py-5 text-center birthday-section">
+  <div class="container col-lg-8">
+    
+    <h2 class="fw-bold mb-3">Happy Birthday ❤️</h2>
+    
+    <p class="lead text-muted mb-4">
+      To Ian,<br>I made this site all for you for your birthday. I mean I had to top the shirts somehow. I hope you love looking back at all of our memories and we use the movie tracker wisely. I love you.<br>Love, Mandy
+    </p>
+
+    <button id="confettiBtn" class="btn btn-primary px-4 py-2">
+      Celebrate 🎉
+    </button>
+
+  </div>
+</section>
+
+<!--FOOTER-->
+<div class="container">
+  <footer class="row row-cols-1 row-cols-md-5 py-5 border-top align-items-start">
+
+    <!-- Column 1: Logo -->
+    <div class="col mb-4 vmb-md-0">
+      <a href="../index.html" class="d-flex align-items-center justify-content-center justify-content-md-start mb-3 link-dark text-decoration-none">
+        <img src="images/logo.png" alt="Logo" height="50">
+      </a>
+      <p>© 2026</p>
+    </div>
+
+    <!-- Column 2: All About Us -->
+    <div class="col mb-4 vmb-md-0">
+      <h5>All About Us</h5>
+      <ul class="nav flex-column">
+        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 footer-link">All About Ian</a></li>
+        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 footer-link">All About Mandy</a></li>
+        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 footer-link">Us Together</a></li>
+      </ul>
+    </div>
+
+    <!-- Column 3: Memories -->
+    <div class="col mb-4 mb-md-0">
+      <h5>Memories</h5>
+      <ul class="nav flex-column">
+        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 footer-link">Photos</a></li>
+        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 footer-link">Videos</a></li>
+        <li class="nav-item mb-2"><a href="fun/map/map.html" class="nav-link p-0 footer-link">Our Map</a></li>
+      </ul>
+    </div>
+
+    <!-- Column 4: Fun -->
+    <div class="col mb-4 mb-md-0">
+      <h5>Fun</h5>
+      <ul class="nav flex-column">
+        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 footer-link">Movies</a></li>
+        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 footer-link">Watchlist</a></li>
+        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 footer-link">Perfect Playlist</a></li>
+      </ul>
+    </div>
+
+    <!-- Column 5: Our Future -->
+    <div class="col mb-4 mb-md-0">
+      <h5>Our Future</h5>
+      <ul class="nav flex-column">
+        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 footer-link">Countdowns</a></li>
+        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 footer-link">Bucket List</a></li>
+        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 footer-link">Open When...</a></li>
+      </ul>
+    </div>
+
+  </footer>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+<script src="javascript/confetti.js"></script>
 </body>
 </html>

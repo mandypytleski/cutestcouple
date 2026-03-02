@@ -1,14 +1,245 @@
-/* Styles for the map and slideshow */
+/*NAV*/
+.nav-underline{
+  margin: 0 auto;
+}
+
+.navbar-nav .nav-link {
+  margin: 0 4rem;
+}
+
+.navbar {
+  background-color: grey;
+}
+
+/* ===== Minimal Modern Blue Theme ===== */
+
+.navbar {
+  padding: 0.8rem 1.5rem;
+  transition: all 0.3s ease;
+}
+
+/* Nav links */
+.navbar-nav .nav-link {
+  font-weight: 500;
+  color: #333;
+  padding: 0.5rem 1rem;
+  position: relative;
+  transition: color 0.3s ease;
+  display: flex;
+  text-align: center;
+  align-items: center;
+}
+
+/* Perfectly centered underline (use ::before so Bootstrap's ::after caret isn't overridden) */
+.navbar-nav .nav-link::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -4px;
+  width: 100%;
+  height: 2px;
+  background-color: #1e6fff;
+  transform: translateX(-50%) scaleX(0);
+  transform-origin: center;
+  transition: transform 0.3s ease;
+}
+
+.navbar-nav .nav-link:hover::before {
+  transform: translateX(-50%) scaleX(1);
+}
+
+/* Blue hover */
+.navbar-nav .nav-link:hover {
+  color: #1e6fff;
+}
+
+.navbar img:hover{
+  filter: brightness(0) saturate(100%) invert(20%) sepia(88%) saturate(6590%) hue-rotate(200deg) brightness(100%) contrast(100%);
+}
+
+/* Dropdown menu */
+.dropdown-menu {
+  border: none;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+}
+
+.dropdown-item:hover {
+  background-color: #f0f6ff;
+  color: #1e6fff;
+}
+
+/* Hamburger icon color */
+.navbar-toggler {
+  border: none;
+}
+
+.navbar-toggler:focus {
+  box-shadow: none;
+}
+
+/* remove Bootstrap dropdown caret */
+.dropdown-toggle::after,
+.nav-link.dropdown-toggle::after {
+  display: none !important;
+}
+
+/* Center dropdown under the nav-link text and center items */
+.navbar-nav .dropdown {
+  position: relative;
+}
+
+.navbar-nav .dropdown-menu {
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  min-width: 0;                 /* allow menu to size to content */
+  white-space: nowrap;          /* keep items on one line */
+  text-align: center;           /* center item text */
+  margin-top: 0.5rem;           /* small gap from nav */
+  padding: 0.4rem 0.6rem;
+  border-radius: 12px;
+}
+
+.navbar-nav .dropdown-item {
+  text-align: center;
+  padding: 0.35rem 1rem;
+}
+/*END NAV*/
+
+/*FOOTER*/
+footer {
+  padding-bottom: 1rem !important; /* remove large bottom gap */
+}
+
+footer h5 {
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+}
+
+footer .nav-link {
+  padding: 0;
+  font-size: 0.9rem;
+  transition: color 0.3s;
+}
+
+footer .nav-link:hover {
+  color: #1e6fff; /* matches your navbar accent */
+}
+
+/* Footer general */
+footer {
+  padding-bottom: 1rem; /* remove large bottom gap */
+  border-color: #e5e5e5;
+  font-family: "Inter", sans-serif;
+  font-size: 0.9rem;
+}
+
+footer .col{
+  text-align: center;
+  align-items: center;
+}
+
+/* Headings */
+footer h5 {
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+  color: #333;
+}
+
+/* Footer links - minimal modern with blue underline hover */
+.footer-link {
+  color: #6c757d; /* muted gray text */
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+.footer-link::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -2px;
+  width: 80%;
+  height: 2px;
+  background-color: #1e6fff; /* same blue as navbar */
+  transform: translateX(-50%) scaleX(0);
+  transform-origin: center;
+  transition: transform 0.3s ease;
+}
+
+footer img{
+  margin: 0 auto;
+}
+
+footer img:hover{
+  filter: brightness(0) saturate(100%) invert(20%) sepia(88%) saturate(6590%) hue-rotate(200deg) brightness(100%) contrast(100%);
+}
+
+.footer-link:hover::before {
+  transform: translateX(-50%) scaleX(1);
+}
+
+.footer-link:hover {
+  color: #1e6fff;
+}
+
+/*END FOOTER*/
+
+.birthday-section {
+  background: #f8f9fa;
+}
+
+.birthday-section h2 {
+  font-size: 2.2rem;
+}
+
+.btn-primary {
+  background-color: #1e6fff;
+  border: none;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn-primary:hover {
+  background-color: #1657d9;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(30, 111, 255, 0.25);
+}
+
+.countdown-section {
+  background-color: #ffffff;
+}
+
+.countdown-display {
+  font-size: 2rem;
+  font-weight: 600;
+  color: #1e6fff; /* your blue */
+  letter-spacing: 1px;
+}
+
+/*MAP*/
 .slideshow {
   position: relative;
-  width: 320px;
+  width: 90%;
+  margin: 0 auto;
+  height: 420px;              /* total popup height */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  overflow: hidden;           /* 🚨 prevents sticking out */
+}
+
+.slideshow h3,
+.slideshow p {
+  margin: 5px 0;
+  text-align: center;
 }
 
 .slide {
   display: none;
-  width: 100%;
+  max-width: 100%;
+  max-height: 300px;          /* image area height */
+  object-fit: contain;
   border-radius: 10px;
-  align-items: center;
 }
 
 .slideshow button {
@@ -20,10 +251,45 @@
   padding: 4px 8px;
   cursor: pointer;
 }
+#map-container{
+  width: 100%;
+  align-items: center;
+  display: flex;
+}
 
-#map { height: 90vh; }
-    .slide { display: none; }
-    .slide.active { display: block; }
+#map { 
+  height: 80vh; 
+  width: 90%;
+  margin: 0 auto;
+  border-radius: 10px;
+}
+    
+.slide { display: none; }
+.slide.active { display: block; }
 
 .slideshow button:first-of-type { left: 0; }
 .slideshow button:last-of-type { right: 0; }
+
+/* Responsive centering for mobile */
+@media (max-width: 767px) {
+  .navbar-nav .dropdown-menu {
+    position: static !important;
+    left: auto !important;
+    transform: none !important;
+    width: 100%;
+    margin-top: 0.25rem;
+    box-shadow: none;
+  }
+
+  .navbar-nav .dropdown-item {
+    text-align: center;
+  }
+
+  footer .col {
+    text-align: center !important;
+  }
+  footer .d-flex {
+    justify-content: center !important;
+  }
+  
+}
