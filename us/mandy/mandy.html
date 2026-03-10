@@ -69,7 +69,158 @@
   </div>
 </nav>
 
+<!--Introduction-->
+<div class="container my-4">
+  <h1 class="display-4 text-center">This is Mandy!</h1>
+  <img src="images/profile.png" alt="Profile Picture" class="rounded mx-auto d-block my-4" style="max-width: 70%; border: 5px solid #1e6fff; box-shadow: 0 0 10px black;">
+  <p class="lead text-center">Mandy is the most wonderful girlfriend in the world. But there's a lot more to her.</p>
+</div>
 
+<!--Favorites-->
+<div class="container py-5">
+  <h2 class="text-center mb-5">Just some of Mandy's Favorites...</h2>
+
+  <div class="row g-4 justify-content-center">
+
+    <!-- Card -->
+    <div class="col-md-4 col-sm-6">
+      <div class="flip-card">
+        <div class="flip-card-inner">
+
+          <div class="flip-card-front">
+            Favorite Food
+          </div>
+
+          <div class="flip-card-back">
+            Cheese Pizza
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card -->
+    <div class="col-md-4 col-sm-6">
+      <div class="flip-card">
+        <div class="flip-card-inner">
+
+          <div class="flip-card-front">
+            Favorite Movie
+          </div>
+
+          <div class="flip-card-back">
+            Dune 2
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card -->
+    <div class="col-md-4 col-sm-6">
+      <div class="flip-card">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            Favorite Color
+          </div>
+
+          <div class="flip-card-back">
+            Purple 💜
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- Card -->
+    <div class="col-md-4 col-sm-6">
+      <div class="flip-card">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            Favorite Place
+          </div>
+
+          <div class="flip-card-back">
+            Jay Cooke State Park, MN
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- Card -->
+    <div class="col-md-4 col-sm-6">
+      <div class="flip-card">
+        <div class="flip-card-inner">
+
+          <div class="flip-card-front">
+            Favorite Person
+          </div>
+
+          <div class="flip-card-back">
+            Ian. Duh.<br><br>(but probably her cat, Sadie)
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card -->
+    <div class="col-md-4 col-sm-6">
+      <div class="flip-card">
+        <div class="flip-card-inner">
+
+          <div class="flip-card-front">
+            Favorite Quote
+          </div>
+
+          <div class="flip-card-back">
+          "Hear the language that isn't spoken." - Mary E. Pearson"
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--Snack Randomizer-->
+<section class="container py-5 text-center" id="randomPicker">
+  <h2 class="mb-4">Snack Randomizer</h2>
+  <p>Click the button to see what Mandy should enjoy right now!</p>
+
+  <button class="btn btn-primary btn-lg my-3" onclick="pickFavoritesMandy()">Randomize</button>
+
+  <div id="favoritesResult" class="mt-4">
+    <p><strong>Drink:</strong> <span id="drink"></span></p>
+    <p><strong>Snack:</strong> <span id="snack"></span></p>
+    <p><strong>Hobby:</strong> <span id="hobby"></span></p>
+  </div>
+</section>
+
+<!--Family-->
+<section class="container py-4 text-center" id="familySection">
+  <h2 class="mb-5">Mandy's Family 💙</h2>
+
+  <div class="row justify-content-center align-items-start g-4">
+
+    <div class="col-12 col-md-6">
+      <div class="family-card">
+        <img src="images/jaysside.JPEG" alt="Parent 1" class="img-thumbnail">
+        <h5 class="mt-3">Jay's Side</h5>
+      </div>
+    </div>
+
+    <div class="col-12 col-md-6">
+      <div class="family-card">
+        <img src="images/kimsside.png" alt="Kims Side" class="img-thumbnail">
+        <h5 class="mt-3">Kim's Side</h5>
+      </div>
+    </div>
+
+
+  </div>
+</section>
+
+
+<!--FOOTER-->
 <div class="container">
   <footer class="row row-cols-1 row-cols-md-5 py-5 border-top align-items-start">
 
@@ -124,7 +275,7 @@
   </footer>
 </div>
 
-
+<script src="../script.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

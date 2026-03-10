@@ -1,4 +1,4 @@
-const revealDate = new Date("April 4, 2026 00:00:00").getTime();
+const revealDate = new Date("march 5, 2026 00:00:00").getTime();
 
   const countdown = setInterval(function () {
     const now = new Date().getTime();
