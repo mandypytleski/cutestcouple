@@ -229,6 +229,52 @@ const map = L.map('map').setView([38.875, -97.93], 4);
     </div>
       `;
 
+      const florida = `
+        <div class="slideshow">
+          <h3>Florida</h3>
+          <p>The first big vacation for us over spring break. We went to Ian's favorite place in the world on St. George Island.</p>
+          <img class="slide" src="images/florida/340543648098594580.jpg">
+          <img class="slide" src="images/florida/1101634221761076458.jpg">
+          <img class="slide" src="images/florida/2262541244127774621.jpg">
+          <img class="slide" src="images/florida/2397772743213861207.jpg">
+          <img class="slide" src="images/florida/3327663273276310366.jpg">
+          <img class="slide" src="images/florida/3685192867504205795.jpg">
+          <img class="slide" src="images/florida/3933769779062775665.jpg">
+          <img class="slide" src="images/florida/5295683600223002348.jpg">
+          <img class="slide" src="images/florida/6530946744899489573.jpg">
+          <img class="slide" src="images/florida/7822672950968642371v.jpg">
+          <img class="slide" src="images/florida/8390420847187435019.jpg">
+          <img class="slide" src="images/florida/9141150914819516789.jpg">
+          <img class="slide" src="images/florida/IMG_0127.jpg">
+          <img class="slide" src="images/florida/IMG_0132.jpg">
+          <img class="slide" src="images/florida/IMG_0139.jpg">
+          <img class="slide" src="images/florida/IMG_0190.jpg">
+          <img class="slide" src="images/florida/IMG_0190.jpg">
+          <img class="slide" src="images/florida/IMG_0295.jpg">
+          <img class="slide" src="images/florida/IMG_0297.jpg">
+          <img class="slide" src="images/florida/IMG_0303.jpg">
+          <img class="slide" src="images/florida/IMG_0310.jpg">
+          <img class="slide" src="images/florida/IMG_0331.jpg">
+          <img class="slide" src="images/florida/IMG_0339.jpg">
+          <img class="slide" src="images/florida/IMG_0343.jpg">
+          <img class="slide" src="images/florida/IMG_0369.jpg">
+          <img class="slide" src="images/florida/IMG_0380.jpg">
+          <img class="slide" src="images/florida/IMG_0381.jpg">
+          <img class="slide" src="images/florida/IMG_0383.jpg">
+          <img class="slide" src="images/florida/IMG_0386.jpg">
+          <img class="slide" src="images/florida/IMG_0410.jpg">
+          <img class="slide" src="images/florida/IMG_0580.jpg">
+          <img class="slide" src="images/florida/IMG_0625.jpg">
+          <img class="slide" src="images/florida/IMG_0631.jpg">
+          <img class="slide" src="images/florida/IMG_0638.jpg">
+          <img class="slide" src="images/florida/IMG_0683.jpg">
+          <img class="slide" src="images/florida/IMG_0705.jpg">
+          <img class="slide" src="images/florida/IMG_7863.jpg">
+          <button onclick="prevSlide(this)">❮</button>
+          <button onclick="nextSlide(this)">❯</button>
+        </div>
+       `;
+
   //repeat this to actually create the markers. BindPopUp to the correlated popup.
       L.marker([44.878898871770595, -91.68712405322354])
       .addTo(map)
