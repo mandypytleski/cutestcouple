@@ -8,7 +8,10 @@
     <link rel="icon" type="image/png" href="../../images/logo.png">
     <link rel="stylesheet" href="basic.css">
     <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
-<script type="text/javascript" src="turn.min.js"></script>
+    <script type="text/javascript" src="turn.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Corinthia:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
@@ -97,6 +100,88 @@
   </div>
 </div>
 
+<h1>Our Dates</h1>
+<div class="cards-container">
+  <div class="card">
+    <h2 class="date">August 26, 2024</h2>
+    <p class="description">The day he asked me out</p>
+  </div>
+  <div class="card">
+    <h2 class="date">August 27, 2024</h2>
+    <p class="description">The day I said yes</p>
+  </div>
+  <div class="card">
+    <h2 class="date">February 26, 2025</h2>
+    <p class="description">Our first kiss</p>
+  </div>
+  <div class="card">
+    <h2 class="date">March 8, 2025</h2>
+    <p class="description">Our first "I love you"</p>
+  </div>
+  <div class="card">
+    <h2 class="date">June 11, 2025</h2>
+    <p class="description">Our first vacation</p>
+  </div>
+</div>
+
+<h1>Things That Remind Me of Us</h1>
+<div class="thought-wrapper" onclick="newThought()">
+  <span id="thought"></span>
+</div>
+
+<div class="container">
+  <footer class="row row-cols-1 row-cols-md-5 py-5 border-top align-items-start">
+
+    <!-- Column 1: Logo -->
+    <div class="col mb-4 vmb-md-0">
+      <a href="../../index.html" class="d-flex align-items-center justify-content-center justify-content-md-start mb-3 link-dark text-decoration-none">
+        <img src="../../images/logo.png" alt="Logo" height="50">
+      </a>
+      <p>© 2026</p>
+    </div>
+
+    <!-- Column 2: All About Us -->
+    <div class="col mb-4 vmb-md-0">
+      <h5>All About Us</h5>
+      <ul class="nav flex-column">
+        <li class="nav-item mb-2"><a href="../../us/ian/ian.html" class="nav-link p-0 footer-link">All About Ian</a></li>
+        <li class="nav-item mb-2"><a href="../../us/mandy/mandy.html" class="nav-link p-0 footer-link">All About Mandy</a></li>
+        <li class="nav-item mb-2"><a href="../../us/us/us.html" class="nav-link p-0 footer-link">Us Together</a></li>
+      </ul>
+    </div>
+
+    <!-- Column 3: Memories -->
+    <div class="col mb-4 mb-md-0">
+      <h5>Memories</h5>
+      <ul class="nav flex-column">
+        <li class="nav-item mb-2"><a href="../../memories/photos/photos.html" class="nav-link p-0 footer-link">Photos</a></li>
+        <li class="nav-item mb-2"><a href="../../memories/videos/videos.html" class="nav-link p-0 footer-link">Videos</a></li>
+        <li class="nav-item mb-2"><a href="../../memories/map/map.html" class="nav-link p-0 footer-link">Our Map</a></li>
+      </ul>
+    </div>
+
+    <!-- Column 4: Fun -->
+    <div class="col mb-4 mb-md-0">
+      <h5>Fun</h5>
+      <ul class="nav flex-column">
+        <li class="nav-item mb-2"><a href="../../fun/movies/movies.html" class="nav-link p-0 footer-link">Movies</a></li>
+        <li class="nav-item mb-2"><a href="../../fun/watchlist/watchlist.html" class="nav-link p-0 footer-link">Watchlist</a></li>
+        <li class="nav-item mb-2"><a href="../../fun/playlist/playlist.html" class="nav-link p-0 footer-link">Perfect Playlist</a></li>
+      </ul>
+    </div>
+
+    <!-- Column 5: Our Future -->
+    <div class="col mb-4 mb-md-0">
+      <h5>Our Future</h5>
+      <ul class="nav flex-column">
+        <li class="nav-item mb-2"><a href="../../future/countdowns/countdowns.html" class="nav-link p-0 footer-link">Countdowns</a></li>
+        <li class="nav-item mb-2"><a href="../../future/bucketlist/bucketlist.html" class="nav-link p-0 footer-link">Bucket List</a></li>
+        <li class="nav-item mb-2"><a href="../../future/openwhen/openwhen.html" class="nav-link p-0 footer-link">Open When...</a></li>
+      </ul>
+    </div>
+
+  </footer>
+</div>
 <script type="text/javascript">
 
 	$(window).ready(function() {
@@ -124,9 +209,6 @@
 	});
 
 </script>
-
-
-
-
+<script type="text/javascript" src="../script.js"></script>
 </body>
 </html>

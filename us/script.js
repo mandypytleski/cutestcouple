@@ -26,34 +26,38 @@ function pickFavoritesMandy() {
   document.getElementById("hobby").textContent = otherPick;
 }
 
-let currentPage = 0;
-let pages;
 
-document.addEventListener('DOMContentLoaded', function() {
-  pages = document.querySelectorAll('.page');
-  showPage(currentPage);
-});
+const thoughts = [
+  "late night drives",
+  "starbies dates",
+  "take me to NOODLES",
+  "shirley temples",
+  "Or what, you'll spank me?",
+  "random cookie runs",
+  "blankets",
+  "movie nights",
+  "cops",
+  "tangled",
+  "instagram",
+  "tiktok",
+  "olive garden",
+  "hiking"
+];
 
-function showPage(index) {
-  pages.forEach((page, i) => {
-    if (i === index) {
-      page.classList.remove('flipped');
-    } else {
-      page.classList.add('flipped');
-    }
-  });
+let thoughtIndex = 0; // Add this to track the current thought in sequence
+
+function newThought() {
+  const el = document.getElementById("thought");
+
+  el.style.opacity = 0;
+
+  setTimeout(() => {
+    el.innerText = thoughts[thoughtIndex]; // Set the current thought in order
+    thoughtIndex = (thoughtIndex + 1) % thoughts.length; // Move to next, loop back to start
+    el.style.opacity = 1;
+  }, 200);
 }
 
-function nextPage() {
-  if (currentPage < pages.length - 1) {
-    currentPage++;
-    showPage(currentPage);
-  }
-}
-
-function prevPage() {
-  if (currentPage > 0) {
-    currentPage--;
-    showPage(currentPage);
-  }
-}
+setInterval(() => {
+  newThought();
+}, 3000);
