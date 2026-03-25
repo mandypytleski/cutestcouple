@@ -342,7 +342,122 @@ footer img:hover{
 .slideshow button:first-of-type { left: 0; }
 .slideshow button:last-of-type { right: 0; }
 
+.book {
+  width: 600px;
+  height: 400px;
+  position: relative;
+  perspective: 1500px;
+  margin: 0 auto;
+  border: 3px solid #1e6fff;
+  border-radius: 12px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+}
 
+.page {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: linear-gradient(135deg, #fffdf8 0%, #f5f1e8 100%);
+  border-radius: 10px;
+  padding: 40px;
+  box-sizing: border-box;
+  transform-origin: left center;
+  transform-style: preserve-3d;
+  transition: transform 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.page h2 {
+  color: #1e6fff;
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.page p {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: #333;
+  text-align: center;
+}
+
+.page.flipped {
+  transform: rotateY(-180deg);
+  pointer-events: none;
+  visibility: hidden;
+  opacity: 0;
+}
+
+.controls {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 40px;
+  margin-bottom: 40px;
+  width: 100%;
+  position: relative;
+  z-index: 5;
+}
+
+.controls button {
+  background-color: #1e6fff;
+  color: white;
+  border: none;
+  padding: 12px 30px;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 600;
+}
+
+.controls button:hover {
+  background-color: #1657d9;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(30, 111, 255, 0.25);
+}
+
+.controls button:active {
+  transform: translateY(0);
+}
+
+body{
+	background:#ccc;
+}
+
+#magazine-container{
+  width:100%;
+  justify-content: center;
+  margin-top: 20px;
+  background-color: #ccc;
+  padding: 20px;
+}
+
+#magazine{
+	width:60%;
+  height: 80vh;
+  margin: 0 auto;
+  
+}
+
+#magazine .turn-page{
+	background-color:#ccc;
+	background-size:100% 100%;
+}
+
+#magazine-container button{
+  background-color: #1e6fff;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 600;
+  margin: 10px;
+}
 
 /* Responsive centering for mobile */
 @media (max-width: 767px) {
@@ -364,6 +479,20 @@ footer img:hover{
   }
   footer .d-flex {
     justify-content: center !important;
+  }
+   #magazine-container {
+    padding: 10px; /* Reduce padding on small screens */
+  }
+
+  #magazine {
+    width: 95%; /* Increase width to nearly full on mobile for better visibility */
+    height: 60vh; /* Reduce height to fit smaller screens */
+  }
+
+  #magazine-container button {
+    padding: 8px 16px; /* Slightly smaller buttons */
+    font-size: 0.9rem; /* Smaller font for buttons */
+    margin: 5px; /* Reduce margin */
   }
   
 }

@@ -25,3 +25,35 @@ function pickFavoritesMandy() {
   document.getElementById("snack").textContent = snackPick;
   document.getElementById("hobby").textContent = otherPick;
 }
+
+let currentPage = 0;
+let pages;
+
+document.addEventListener('DOMContentLoaded', function() {
+  pages = document.querySelectorAll('.page');
+  showPage(currentPage);
+});
+
+function showPage(index) {
+  pages.forEach((page, i) => {
+    if (i === index) {
+      page.classList.remove('flipped');
+    } else {
+      page.classList.add('flipped');
+    }
+  });
+}
+
+function nextPage() {
+  if (currentPage < pages.length - 1) {
+    currentPage++;
+    showPage(currentPage);
+  }
+}
+
+function prevPage() {
+  if (currentPage > 0) {
+    currentPage--;
+    showPage(currentPage);
+  }
+}
