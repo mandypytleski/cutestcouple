@@ -535,6 +535,52 @@ footer img:hover{
   position: absolute;
 }
 
+/* ===== PINTEREST GALLERY ===== */
+
+.gallery {
+  column-count: 5;
+  column-gap: 20px;
+  width: 90%;
+  margin: 40px auto;
+}
+
+.gallery-item {
+  background: white;
+  margin-bottom: 20px;
+  border-radius: 16px;
+  overflow: hidden;
+  break-inside: avoid;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.gallery-item:hover {
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 0 12px 30px rgba(30, 111, 255, 0.2); /* your blue glow */
+}
+
+.gallery-item img {
+  width: 100%;
+  display: block;
+}
+
+/* Responsive columns */
+@media (max-width: 1200px) {
+  .gallery { column-count: 4; }
+}
+
+@media (max-width: 900px) {
+  .gallery { column-count: 3; }
+}
+
+@media (max-width: 600px) {
+  .gallery { column-count: 2; }
+}
+
+@media (max-width: 400px) {
+  .gallery { column-count: 1; }
+}
+
 /* Responsive adjustments for cards (stack on mobile) */
 @media (max-width: 767px) {
   .cards-container {
