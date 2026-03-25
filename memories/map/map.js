@@ -310,7 +310,7 @@ const map = L.map('map').setView([38.875, -97.93], 4);
 
       L.marker([29.663163559679255, -84.86284799579248])
       .addTo(map)
-      .bindPopup(duluth);
+      .bindPopup(florida);
       
       // Photo Slideshow functions
   function nextSlide(btn) {
