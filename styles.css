@@ -483,8 +483,8 @@ footer img:hover{
 .cards-container {
   display: flex;
   justify-content: center;
-  flex-direction: row; /* Changed from column to row for horizontal layout */
-  flex-wrap: wrap; /* Allow wrapping to next row */
+  flex-direction: row; 
+  flex-wrap: wrap; 
   gap: 20px;
   margin: 20px auto;
   padding: 0 20px;
@@ -492,8 +492,8 @@ footer img:hover{
 }
 
 .card {
-  width: calc(50% - 10px); /* Approx. 50% width minus gap for two per row */
-  margin: 0; /* Remove auto margin since centering is handled by container */
+  width: calc(50% - 10px); 
+  margin: 0; 
   text-align: center;
 }
 
@@ -534,8 +534,6 @@ footer img:hover{
   bottom: 50%;
   position: absolute;
 }
-
-/* ===== PINTEREST GALLERY ===== */
 
 .gallery {
   column-count: 5;
@@ -591,5 +589,12 @@ footer img:hover{
     width: 80%; /* Full width on mobile */
     margin: 0 auto; /* Re-add auto margin for centering */
   }
+
+    #magazine {
+    height: 60vw;
+    min-height: 300px;
+    max-width: 100vw;
+  }
+
   
 }

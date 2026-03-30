@@ -183,31 +183,33 @@
   </footer>
 </div>
 <script type="text/javascript">
+  $(window).ready(function() {
+    var displayMode = ($(window).width() <= 768) ? 'single' : 'double';
+    $('#magazine').turn({
+      display: displayMode,
+      acceleration: true,
+      gradients: !$.isTouch,
+      elevation:50,
+      when: {
+        turned: function(e, page) {
+          /*console.log('Current view: ', $(this).turn('view'));*/
+        }
+      }
+    });
 
-	$(window).ready(function() {
-		$('#magazine').turn({
-							display: 'double',
-							acceleration: true,
-							gradients: !$.isTouch,
-							elevation:50,
-							when: {
-								turned: function(e, page) {
-									/*console.log('Current view: ', $(this).turn('view'));*/
-								}
-							}
-						});
-	});
+    // Responsive: change display mode on resize
+    $(window).on('resize', function() {
+      var newMode = ($(window).width() <= 768) ? 'single' : 'double';
+      $('#magazine').turn('display', newMode);
+    });
+  });
 
-	
-	$(window).bind('keydown', function(e){
-		
-		if (e.keyCode==37)
-			$('#magazine').turn('previous');
-		else if (e.keyCode==39)
-			$('#magazine').turn('next');
-			
-	});
-
+  $(window).bind('keydown', function(e){
+    if (e.keyCode==37)
+      $('#magazine').turn('previous');
+    else if (e.keyCode==39)
+      $('#magazine').turn('next');
+  });
 </script>
 <script type="text/javascript" src="../script.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
