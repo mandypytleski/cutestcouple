@@ -70,33 +70,20 @@
 </nav>
 
 <section class="container py-5 text-center">
-  <h1 class="mb-3">Countdowns ⏳</h1>
-  <p class="text-muted mb-5">Things we’re looking forward to</p>
+  <h1 class="mb-3">Our Bucket List 🪣</h1>
+  <p class="text-muted mb-5">All the things we want to do together</p>
 
-  <div class="row g-4" id="countdown-container">
-
-    <!-- Countdown Card -->
-    <div class="col-md-4">
-      <div class="countdown-card p-4">
-        <h4>Galena</h4>
-        <p class="countdown" data-date="2026-06-26"></p>
-      </div>
+  <!-- Add Item -->
+  <div class="row justify-content-center mb-4">
+    <div class="col-md-6">
+      <input type="text" id="bucketInput" class="form-control mb-2" placeholder="Add something new...">
+      <button class="btn btn-primary w-100" onclick="addItem()">Add to List</button>
     </div>
+  </div>
 
-    <div class="col-md-4">
-      <div class="countdown-card p-4">
-        <h4>Anniversary ❤️</h4>
-        <p class="countdown" data-date="2026-08-27"></p>
-      </div>
-    </div>
-
-    <div class="col-md-4">
-      <div class="countdown-card p-4">
-        <h4>Mandy's Birthday</h4>
-        <p class="countdown" data-date="2026-06-03"></p>
-      </div>
-    </div>
-
+  <!-- List -->
+  <div id="bucket-list" class="row g-3 justify-content-center">
+    <!-- Items will appear here -->
   </div>
 </section>
 
@@ -155,7 +142,9 @@
   </footer>
 </div>
 
-<script src="countdown.js"></script>
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="bucket.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 </body>
 </html>

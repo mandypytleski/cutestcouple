@@ -597,6 +597,38 @@ footer img:hover{
   color: #225f30;
 }
 
+.bucket-card {
+  background-color: #f8f8f8;
+  border-radius: 12px;
+  padding: 15px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: all 0.3s ease;
+}
+
+.bucket-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+.bucket-text {
+  font-size: 1.1rem;
+  margin: 0;
+}
+
+.completed {
+  text-decoration: line-through;
+  opacity: 0.6;
+}
+
+.check-btn {
+  border: none;
+  background: none;
+  font-size: 1.4rem;
+  cursor: pointer;
+}
+
 /* Responsive columns */
 @media (max-width: 1200px) {
   .gallery { column-count: 4; }
