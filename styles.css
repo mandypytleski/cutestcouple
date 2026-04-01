@@ -633,7 +633,7 @@ body {
   color: #1558c2;
 }
 
-.bucket-card {
+.bucket-card, .watch-card {
   background-color: #f8f8f8;
   border-radius: 12px;
   padding: 15px 20px;
@@ -643,12 +643,12 @@ body {
   transition: all 0.3s ease;
 }
 
-.bucket-card:hover {
+.bucket-card:hover, .watch-card:hover {
   transform: translateY(-4px);
   box-shadow: 0 10px 20px rgba(0,0,0,0.1);
 }
 
-.bucket-text {
+.bucket-text, .watch-text {
   font-size: 1.1rem;
   margin: 0;
 }
