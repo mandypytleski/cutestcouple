@@ -570,7 +570,7 @@ footer img:hover{
 }
 
 /* Remove default spacing */
-body {
+.video-body {
   margin: 0;
   overflow: hidden; /* prevents double scroll */
 }
