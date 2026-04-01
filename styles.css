@@ -23,6 +23,13 @@ h1{
   font-size: 2.5rem;
 }
 
+.intro{
+  font-size: 1.1rem;
+  line-height: 1.8;
+  text-align: center;
+  margin-top: 5%;
+}
+
 /*NAV*/
 .nav-underline{
   margin: 0 auto;
@@ -562,7 +569,36 @@ footer img:hover{
   display: block;
 }
 
+/* Remove default spacing */
+body {
+  margin: 0;
+  overflow: hidden; /* prevents double scroll */
+}
 
+/* Full screen scrolling feed */
+.video-feed {
+  height: 100vh;
+  overflow-y: scroll;
+  scroll-snap-type: y mandatory;
+}
+
+/* Each video takes full screen */
+.video-container {
+  height: 90vh;
+  width: 100%;
+  scroll-snap-align: start;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: black;
+}
+
+/* FIX for vertical videos */
+.video-container video {
+  max-height: 100%;
+  max-width: 100%;
+  object-fit: contain;
+}
 
 /* Actual map */
 #map {
@@ -594,7 +630,7 @@ footer img:hover{
   font-size: 1.5rem;
   font-weight: 600;
   margin-top: 10px;
-  color: #225f30;
+  color: #1558c2;
 }
 
 .bucket-card {
@@ -628,6 +664,103 @@ footer img:hover{
   font-size: 1.4rem;
   cursor: pointer;
 }
+
+.envelope-container {
+  position: relative;
+  width: 100%;
+  max-width: 600px;
+  height: auto;
+  margin: 0 auto;
+}
+
+.envelope {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 6 / 5; /* maintains proportions */
+  background: #ffffff;
+  border-radius: 0 0 12px 12px; /* Straight top to prevent clipping the flap */
+  box-shadow: 0 12px 30px rgba(7, 0, 142, 0.15);
+  overflow: hidden;
+  border: 2px solid #b7cff7; /* Add a subtle border to define the envelope shape */
+}
+
+.flap {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  height: 50%;
+  background: #1558c2;
+  clip-path: polygon(50% 100%, 0% 0%, 100% 0%);
+  transform-origin: top center;
+  transition: transform 1s ease;
+  z-index: 3;
+}
+
+.open .flap {
+  transform: translateX(-50%) rotateX(180deg);
+}
+
+.letter {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform: translate(-50%, 100%);
+  width: 90%;
+  height: 80%;
+  background: #fffdf8;
+  border-radius: 10px;
+  padding: 10px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+  transition: transform 0.8s ease 0.3s;
+  z-index: 2;
+  text-align: center;
+  overflow-y: auto; /* Add vertical scrolling for long content */
+}
+
+.open .letter {
+  transform: translate(-50%, -10%);
+}
+
+  .letter h2 {
+    margin: 0 0 10px;
+    color: #1558c2;
+    font-size: 22px;
+  }
+
+  .letter p {
+    font-size: 15px;
+    color: black;
+    line-height: 1.5;
+  }
+
+  /* Heart stamp */
+  .heart-stamp {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 25%;
+  height: 25%;
+  cursor: pointer;
+  z-index: 4;
+  transition: transform 0.4s ease, opacity 0.4s ease;
+  /* Use a background image or SVG for a better heart shape */
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23ff6b9c"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>') no-repeat center;
+  background-size: contain;
+  /* Remove the pseudo-elements for halves */
+}
+
+  /* Heart falling animation */
+  .fall {
+    animation: fallAway 1.2s ease-in forwards;
+  }
+
+  @keyframes fallAway {
+    0% { transform: translateX(-50%) translateY(0); opacity: 1; }
+    100% { transform: translateX(-50%) translateY(380px); opacity: 1; }
+  }
 
 /* Responsive columns */
 @media (max-width: 1200px) {
@@ -664,4 +797,74 @@ footer img:hover{
   }
 
   
+}
+
+@media (max-width: 768px) {
+  .envelope-container {
+    max-width: 95%;
+  }
+
+  .letter {
+    font-size: 14px;
+  }
+
+  .letter h2 {
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 768px) {
+  .envelope-container {
+    max-width: 95%;
+  }
+
+  .flap {
+    border-width: 35% 50% 0 50%; /* Slightly smaller on mobile */
+  }
+
+  .heart-stamp {
+    width: 12%;
+    height: 12%;
+  }
+
+  .letter {
+    width: 95%; /* Slightly wider for better fit */
+    height: 70%; /* Increase height to accommodate text */
+    padding: 15px; /* More padding for breathing room */
+    font-size: 14px;
+  }
+
+  .letter h2 {
+    font-size: 20px;
+    margin-bottom: 15px; /* Add space below heading */
+  }
+
+  .letter p {
+    font-size: 18px;
+    line-height: 1.6; /* Improve readability */
+  }
+}
+
+@media (max-width: 480px) {
+  .letter {
+    height: 75%; /* Further increase for very small screens */
+    padding: 12px;
+  }
+
+  .letter h2 {
+    font-size: 16px;
+  }
+
+  .letter p {
+    font-size: 13px;
+  }
+
+  .flap {
+    border-width: 32% 50% 0 50%;
+  }
+
+  .heart-stamp {
+    width: 15%;
+    height: 15%;
+  }
 }
