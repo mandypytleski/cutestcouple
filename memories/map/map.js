@@ -242,7 +242,7 @@ const map = L.map('map').setView([38.875, -97.93], 4);
           <img class="slide" src="images/florida/3933769779062775665.jpg">
           <img class="slide" src="images/florida/5295683600223002348.jpg">
           <img class="slide" src="images/florida/6530946744899489573.jpg">
-          <img class="slide" src="images/florida/7822672950968642371v.jpg">
+          <img class="slide" src="images/florida/7822672950968642371.jpg">
           <img class="slide" src="images/florida/8390420847187435019.jpg">
           <img class="slide" src="images/florida/9141150914819516789.jpg">
           <img class="slide" src="images/florida/IMG_0127.jpg">
