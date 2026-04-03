@@ -811,6 +811,10 @@ footer img:hover{
   .letter h2 {
     font-size: 18px;
   }
+
+  .navbar-nav .dropdown-menu {
+    right: 0;
+  }
 }
 
 @media (max-width: 768px) {

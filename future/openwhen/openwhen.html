@@ -115,8 +115,16 @@
     <div class="flap"></div>
 
     <div class="letter">
-      <h2>Hi sweetheart</h2>
-      <p>blahhhh blah blaaaahh part2</p>
+      <h2>Just press play!</h2>
+
+      <audio id="voiceMessage">
+        <source src="Recording (2).m4a" type="audio/mp4">
+        Your browser does not support the audio element.
+      </audio>
+
+      <button onclick="document.getElementById('voiceMessage').play()">
+        Play my voice 💕
+      </button>
     </div>
 
     <div class="heart-stamp"></div>
