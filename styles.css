@@ -653,6 +653,43 @@ footer img:hover{
   margin: 0;
 }
 
+/* Minimal check circle */
+.check-circle {
+  width: 18px;
+  height: 18px;
+  border: 2px solid #1e6fff;
+  border-radius: 50%;
+  display: inline-block;
+  transition: all 0.2s ease;
+}
+
+/* Filled when completed */
+.check-circle.checked {
+  background-color: #1e6fff;
+}
+
+/* Button reset */
+.check-btn {
+  border: none;
+  background: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+/* Delete button (minimal) */
+.delete-btn {
+  border: none;
+  background: none;
+  font-size: 1.2rem;
+  color: #aaa;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.delete-btn:hover {
+  color: #ff4d4d;
+}
+
 .completed {
   text-decoration: line-through;
   opacity: 0.6;

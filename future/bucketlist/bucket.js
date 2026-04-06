@@ -1,55 +1,106 @@
-let bucketList = JSON.parse(localStorage.getItem("bucketList")) || [];
+const supabaseUrl = "https://mboddoezgkpmzqnwypcs.supabase.co";
+const supabaseKey = "sb_publishable_4RRfiDAs6WR5ei269O6sbg_FqHGIt95";
 
-function renderList() {
+const supabaseClient = supabase.createClient(supabaseUrl, supabaseKey);
+
+document.addEventListener("DOMContentLoaded", loadItems);
+
+async function loadItems() {
+  const { data, error } = await supabaseClient
+    .from("bucket_list")
+    .select("*")
+    .order("id", { ascending: true });
+
+  if (error) {
+    console.error(error);
+    return;
+  }
+
   const container = document.getElementById("bucket-list");
   container.innerHTML = "";
 
-  bucketList.forEach((item, index) => {
-    const col = document.createElement("div");
-    col.className = "col-md-6";
+  data.forEach(item => {
+    const div = document.createElement("div");
+    div.className = "col-md-6 col-lg-4";
 
-    col.innerHTML = `
-      <div class="bucket-card">
-        <p class="bucket-text ${item.done ? "completed" : ""}">
-          ${item.text}
+    div.innerHTML = `
+      <div class="bucket-card ${item.completed ? 'completed' : ''}">
+        
+        <p class="bucket-text">
+          ${item.item}
         </p>
-        <button class="check-btn" onclick="toggleItem(${index})">
-          ${item.done ? "✅" : "⬜"}
-        </button>
+
+        <div class="d-flex align-items-center gap-2">
+
+          <!-- Check button -->
+          <button class="check-btn" onclick="toggleComplete(${item.id}, ${item.completed})">
+            <span class="check-circle ${item.completed ? 'checked' : ''}"></span>
+          </button>
+
+          <!-- Delete button -->
+          <button class="delete-btn" onclick="deleteItem(${item.id})">
+            ×
+          </button>
+
+        </div>
+
       </div>
     `;
 
-    container.appendChild(col);
+    container.appendChild(div);
   });
 }
 
-function addItem() {
+async function addItem() {
   const input = document.getElementById("bucketInput");
-  const text = input.value.trim();
+  const value = input.value.trim();
 
-  if (!text) return;
+  if (!value) return;
 
-  bucketList.push({ text: text, done: false });
-  localStorage.setItem("bucketList", JSON.stringify(bucketList));
+  const { error } = await supabaseClient
+    .from("bucket_list")
+    .insert([{ item: value, completed: false }]);
+
+  if (error) {
+    console.error(error);
+    return;
+  }
 
   input.value = "";
-  renderList();
+  loadItems();
+
 }
 
-function toggleItem(index) {
-  bucketList[index].done = !bucketList[index].done;
-  localStorage.setItem("bucketList", JSON.stringify(bucketList));
-  renderList();
+// ✅ Toggle complete
+async function toggleComplete(id, currentStatus) {
+  const { error } = await supabaseClient
+    .from("bucket_list")
+    .update({ completed: !currentStatus })
+    .eq("id", id);
 
-  // Trigger confetti only when marking as completed
-  if (bucketList[index].done) {
-    confetti({
-      particleCount: 120,
-      spread: 70,
-      origin: { y: 0.6 }
-    });
+  if (error) {
+    console.error(error);
+    return;
+  }
+
+
+  loadItems();
+  if (typeof confetti === "function") {
+    confetti();
   }
 }
 
-// load on start
-renderList();
+// ❌ Delete item
+async function deleteItem(id) {
+  const { error } = await supabaseClient
+    .from("bucket_list")
+    .delete()
+    .eq("id", id);
+
+  if (error) {
+    console.error(error);
+    return;
+  }
+
+  loadItems();
+}
