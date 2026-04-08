@@ -794,6 +794,138 @@ footer img:hover{
     animation: fallAway 1.2s ease-in forwards;
   }
 
+  /* Horizontal scroll rows */
+.scroll-row {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  padding-bottom: 10px;
+}
+
+.scroll-row::-webkit-scrollbar {
+  height: 6px;
+}
+.scroll-row::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 10px;
+}
+
+/* Movie cards */
+.movie-card {
+  min-width: 150px;
+  position: relative;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.movie-card img {
+  width: 100%;
+  border-radius: 12px;
+}
+
+.watched-btn {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  background: rgba(0,128,0,0.8);
+  color: white;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  cursor: pointer;
+
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.movie-card:hover .watched-btn {
+  opacity: 1;
+}
+
+.star {
+  font-size: 24px;
+  cursor: pointer;
+  color: #ccc;
+}
+
+.star.selected {
+  color: gold;
+}
+
+
+
+/* Overlay button */
+.card-overlay {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background: rgba(0,0,0,0.6);
+  color: white;
+  text-align: center;
+  padding: 8px;
+  border-radius: 0 0 12px 12px;
+  opacity: 0;
+  transition: opacity 0.2s;
+  pointer-events: none;
+}
+
+.movie-card:hover .card-overlay {
+  opacity: 1;
+}
+#modalBackdrop {
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+
+#modalBackdrop::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.9), rgba(0,0,0,0.2));
+}
+
+#modalContent {
+  position: relative;
+  z-index: 2;
+}
+
+.modal-title {
+  font-size: 1.8rem;
+  font-weight: 600;
+}
+
+.movie-card {
+  position: relative;
+}
+
+.delete-btn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: rgba(0,0,0,0.7);
+  color: white;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  cursor: pointer;
+
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.movie-card:hover .delete-btn {
+  opacity: 1;
+}
+
   @keyframes fallAway {
     0% { transform: translateX(-50%) translateY(0); opacity: 1; }
     100% { transform: translateX(-50%) translateY(380px); opacity: 1; }

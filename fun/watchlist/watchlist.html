@@ -69,23 +69,82 @@
   </div>
 </nav>
 
-<section class="container py-5 text-center">
-  <h1 class="mb-3">Our Watch List</h1>
-  <p class="text-muted mb-5">All the movies and shows that we want to watch together.</p>
+<section class="container py-5">
+  <h1 class="text-center mb-4">Our Watch List</h1>
 
-  <!-- Add Item -->
-  <div class="row justify-content-center mb-4">
+  <!-- Search -->
+  <div class="row justify-content-center mb-5">
     <div class="col-md-6">
-      <input type="text" id="watchInput" class="form-control mb-2" placeholder="Add something new...">
-      <button class="btn btn-primary w-100" onclick="addItem()">Add to List</button>
+      <input 
+        type="text" 
+        id="watchInput" 
+        class="form-control"
+        placeholder="Search movies or shows..."
+        oninput="searchTMDB()"
+      >
     </div>
   </div>
 
-  <!-- List -->
-  <div id="watch-list" class="row g-3 justify-content-center">
-    <!-- Items will appear here -->
-  </div>
+  <!-- Search Results -->
+  <h4 class="mb-3">Search Results</h4>
+  <div id="search-results" class="scroll-row mb-5"></div>
+
+  <!-- Watchlist -->
+  <h4 class="mb-3">Your Watchlist</h4>
+  <div id="watchlist" class="scroll-row"></div>
 </section>
+
+<!-- Movie Modal -->
+<div class="modal fade" id="movieModal" tabindex="-1">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content overflow-hidden">
+
+      <div id="modalBackdrop" class="position-relative">
+        <div class="p-4 text-white" id="modalContent">
+          <!-- Filled dynamically -->
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="reviewModal" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content p-4">
+
+      <h5>Leave a Review</h5>
+
+      <div id="starRating" class="mb-3">
+        <span class="star" data-value="1">★</span>
+        <span class="star" data-value="2">★</span>
+        <span class="star" data-value="3">★</span>
+        <span class="star" data-value="4">★</span>
+        <span class="star" data-value="5">★</span>
+      </div>
+      <textarea id="reviewInput" class="form-control mb-3" placeholder="Write a review..."></textarea>
+
+      <input type="datetime-local" id="watchedAt" class="form-control mb-3">
+      <button class="btn btn-success" id="submitReviewBtn">Submit</button>
+
+    </div>
+  </div>
+</div>
+
+<div class="tmdb-attribution text-center py-3">
+  <a href="https://www.themoviedb.org/" target="_blank" rel="noopener noreferrer">
+    <img 
+      src="tmdb.svg" 
+      alt="TMDB Logo" 
+      style="height: 30px;"
+    >
+  </a>
+  <div>
+    <small>
+      This product uses the TMDB API but is not endorsed or certified by TMDB.
+    </small>
+  </div>
+</div>
 
 <div class="container">
   <footer class="row row-cols-1 row-cols-md-5 py-5 border-top align-items-start">
@@ -143,6 +202,7 @@
 
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="watch.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 </body>
