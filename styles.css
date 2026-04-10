@@ -800,6 +800,7 @@ footer img:hover{
   gap: 16px;
   overflow-x: auto;
   padding-bottom: 10px;
+  margin: 0 auto;
 }
 
 .scroll-row::-webkit-scrollbar {
@@ -808,6 +809,17 @@ footer img:hover{
 .scroll-row::-webkit-scrollbar-thumb {
   background: #ccc;
   border-radius: 10px;
+}
+
+#watchlist {
+  flex-wrap: wrap;
+  overflow-x: visible !important;
+  justify-content: center;
+  margin: 0 auto;
+}
+
+#watchlist .movie-card {
+  width: 18%;
 }
 
 /* Movie cards */
@@ -899,10 +911,6 @@ footer img:hover{
   font-weight: 600;
 }
 
-.movie-card {
-  position: relative;
-}
-
 .delete-btn {
   position: absolute;
   top: 8px;
@@ -924,6 +932,10 @@ footer img:hover{
 
 .movie-card:hover .delete-btn {
   opacity: 1;
+}
+
+#provider-slot img{
+  margin: 10px;
 }
 
   @keyframes fallAway {
@@ -1039,5 +1051,27 @@ footer img:hover{
   .heart-stamp {
     width: 15%;
     height: 15%;
+  }
+}
+
+/* responsive shrink for smaller screens */
+@media (max-width: 1200px) {
+  #watchlist .movie-card {
+    flex: 0 0 25%;
+    max-width: 25%;
+  }
+}
+
+@media (max-width: 900px) {
+  #watchlist .movie-card {
+    flex: 0 0 33.333%;
+    max-width: 33.333%;
+  }
+}
+
+@media (max-width: 600px) {
+  #watchlist .movie-card {
+    flex: 0 0 50%;
+    max-width: 50%;
   }
 }

@@ -20,16 +20,25 @@ async function loadWatchedIds() {
 
 window.onload = async () => {
   await loadWatchedIds();
+  await searchTMDB();  // show popular on load
   loadWatchlist();
 };
 
 async function searchTMDB() {
-  const query = document.getElementById("watchInput").value;
+  const query = document.getElementById("watchInput").value.trim();
+
+  if (!query) {
+    const res = await fetch(
+      `https://api.themoviedb.org/3/trending/all/week?api_key=${TMDB_API_KEY}`
+    );
+    const data = await res.json();
+    displayResults(data.results);
+    return;
+  }
 
   const res = await fetch(
     `https://api.themoviedb.org/3/search/multi?api_key=${TMDB_API_KEY}&query=${query}`
   );
-
   const data = await res.json();
   displayResults(data.results);
 }
@@ -144,7 +153,6 @@ async function openModalSaved(item) {
   currentItem = item;
 
   const title = item.title;
-
   const details = await fetchMovieDetails(item.tmdb_id, item.media_type);
 
   const overview = details.overview;
@@ -163,26 +171,18 @@ async function openModalSaved(item) {
     <h2 class="modal-title mb-2">${title}</h2>
     <p class="mb-2"><strong>⭐ ${rating}</strong> • ${date}</p>
     <p class="mb-4">${overview}</p>
-
+    <div class="mb-4">
+      <p class="text-white-50 small mb-1">WHERE TO WATCH</p>
+      <div id="providerSlot">Loading...</div>
+    </div>
     <div class="d-flex gap-2">
-      <button class="btn btn-success" id="watchedBtn">
-        Mark as Watched
-      </button>
-
-      <button class="btn btn-danger" id="removeBtn">
-        Remove
-      </button>
-
-      <button class="btn btn-light" data-bs-dismiss="modal">
-        Close
-      </button>
+      <button class="btn btn-success" id="watchedBtn">Mark as Watched</button>
+      <button class="btn btn-danger" id="removeBtn">Remove</button>
+      <button class="btn btn-light" data-bs-dismiss="modal">Close</button>
     </div>
   `;
 
-  document.getElementById("watchedBtn").onclick = () => {
-    openReviewModal(item);
-  };
-
+  document.getElementById("watchedBtn").onclick = () => openReviewModal(item);
   document.getElementById("removeBtn").onclick = async () => {
     await removeFromWatchlist(item.id);
     bootstrap.Modal.getInstance(document.getElementById("movieModal")).hide();
@@ -190,15 +190,20 @@ async function openModalSaved(item) {
 
   const modal = new bootstrap.Modal(document.getElementById("movieModal"));
   modal.show();
+
+  // Fetch providers and inject
+  const providers = await fetchWatchProviders(item.tmdb_id, item.media_type);
+  document.getElementById("providerSlot").innerHTML = renderWatchProviders(providers);
 }
 
-function openModal(item) {
+async function openModal(item) {
   currentItem = item;
 
   const title = item.title || item.name;
   const overview = item.overview || "No description available.";
   const rating = item.vote_average || "N/A";
   const date = item.release_date || item.first_air_date || "Unknown";
+  const mediaType = item.media_type;
 
   const backdrop = item.backdrop_path
     ? `https://image.tmdb.org/t/p/original${item.backdrop_path}`
@@ -209,29 +214,29 @@ function openModal(item) {
 
   modalBackdrop.style.backgroundImage = `url(${backdrop})`;
 
+  // Show modal with loading state for providers
   modalContent.innerHTML = `
     <h2 class="modal-title mb-2">${title}</h2>
     <p class="mb-2"><strong>⭐ ${rating}</strong> • ${date}</p>
     <p class="mb-4">${overview}</p>
-
-    <button class="btn btn-success me-2" id="addToWatchlistBtn">
-      + Add to Watchlist
-    </button>
-
-    <button class="btn btn-light" data-bs-dismiss="modal">
-      Close
-    </button>
+    <div class="mb-4">
+      <p class="text-white-50 small mb-1">WHERE TO WATCH</p>
+      <div id="providerSlot">Loading...</div>
+    </div>
+    <button class="btn btn-success me-2" id="addToWatchlistBtn">+ Add to Watchlist</button>
+    <button class="btn btn-light" data-bs-dismiss="modal">Close</button>
   `;
 
-  // ✅ Attach listener AFTER the button exists
   document.getElementById("addToWatchlistBtn").onclick = () => {
-    if (currentItem) {
-      addToWatchlist(currentItem);
-    }
+    if (currentItem) addToWatchlist(currentItem);
   };
 
   const modal = new bootstrap.Modal(document.getElementById("movieModal"));
   modal.show();
+
+  // Fetch providers and inject
+  const providers = await fetchWatchProviders(item.id, mediaType);
+  document.getElementById("providerSlot").innerHTML = renderWatchProviders(providers);
 }
 
 async function removeFromWatchlist(id) {
@@ -316,4 +321,50 @@ async function fetchMovieDetails(tmdbId, mediaType) {
     `https://api.themoviedb.org/3/${mediaType}/${tmdbId}?api_key=${TMDB_API_KEY}`
   );
   return await res.json();
+}
+
+async function fetchWatchProviders(tmdbId, mediaType) {
+  const res = await fetch(
+    `https://api.themoviedb.org/3/${mediaType}/${tmdbId}/watch/providers?api_key=${TMDB_API_KEY}`
+  );
+  const data = await res.json();
+  // US results, flatrate = streaming, rent = rental, buy = purchase
+  return data.results?.US || null;
+}
+
+function renderWatchProviders(providers) {
+  if (!providers) return `<p class="text-white-50 small">No streaming info available.</p>`;
+
+  const sections = [];
+
+  if (providers.flatrate?.length) {
+    const logos = providers.flatrate.map(p =>
+      `<img src="https://image.tmdb.org/t/p/original${p.logo_path}" 
+            title="${p.provider_name}"
+            style="height:36px; border-radius:8px;" />`
+    ).join("");
+    sections.push(`<div class="mb-1"><small class="text-white-50">Stream</small><br>${logos}</div>`);
+  }
+
+  if (providers.rent?.length) {
+    const logos = providers.rent.map(p =>
+      `<img src="https://image.tmdb.org/t/p/original${p.logo_path}" 
+            title="${p.provider_name}"
+            style="height:36px; border-radius:8px;" />`
+    ).join("");
+    sections.push(`<div class="mb-1"><small class="text-white-50">Rent</small><br>${logos}</div>`);
+  }
+
+  if (providers.buy?.length) {
+    const logos = providers.buy.map(p =>
+      `<img src="https://image.tmdb.org/t/p/original${p.logo_path}" 
+            title="${p.provider_name}"
+            style="height:36px; border-radius:8px;" />`
+    ).join("");
+    sections.push(`<div class="mb-1"><small class="text-white-50">Buy</small><br>${logos}</div>`);
+  }
+
+  if (sections.length === 0) return `<p class="text-white-50 small">Not available for streaming.</p>`;
+
+  return `<div class="d-flex flex-column gap-1">${sections.join("")}</div>`;
 }
