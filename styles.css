@@ -938,6 +938,52 @@ footer img:hover{
   margin: 10px;
 }
 
+
+.movie2-card {
+  border: none;
+  border-radius: 1rem;
+  overflow: hidden;
+  transition: all 0.25s ease;
+  background: white;
+  text-align: center;
+}
+
+.movie2-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+.movie2-card img {
+  height: 350px;
+  object-fit: cover;
+}
+
+.movie2-card .card-body {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+}
+
+.movie2-card .card-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.movie2-card .card-text {
+  font-size: 0.9rem;
+  color: #555;
+
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.movie2-card .stars {
+  color: #f5c518;
+  font-size: 2rem;
+}
+
   @keyframes fallAway {
     0% { transform: translateX(-50%) translateY(0); opacity: 1; }
     100% { transform: translateX(-50%) translateY(380px); opacity: 1; }

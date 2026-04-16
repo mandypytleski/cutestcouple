@@ -112,7 +112,7 @@ function displaySaved(items) {
 
     card.querySelector(".watched-btn").onclick = (e) => {
       e.stopPropagation();
-      openReviewModal(item);
+      openReviewModal(item.tmdb_id, item);
     };
 
     card.onclick = () => openModalSaved(item);
@@ -182,7 +182,7 @@ async function openModalSaved(item) {
     </div>
   `;
 
-  document.getElementById("watchedBtn").onclick = () => openReviewModal(item);
+  document.getElementById("watchedBtn").onclick = () => openReviewModal(item.tmdb_id, item);
   document.getElementById("removeBtn").onclick = async () => {
     await removeFromWatchlist(item.id);
     bootstrap.Modal.getInstance(document.getElementById("movieModal")).hide();
@@ -254,8 +254,9 @@ async function removeFromWatchlist(id) {
 
 let selectedItem = null;
 
-function openReviewModal(item) {
+function openReviewModal(tmdbId, item) {
   selectedItem = item;
+  selectedItem.tmdb_id = tmdbId; // 🔒 lock correct ID
 
   const modal = new bootstrap.Modal(document.getElementById("reviewModal"));
   modal.show();
@@ -272,7 +273,7 @@ document.getElementById("submitReviewBtn").onclick = async () => {
     .from("movies")
     .insert([
       {
-        tmdb_id: selectedItem.id,
+        tmdb_id: selectedItem.tmdb_id,
         title: selectedItem.title || selectedItem.name,
         poster_path: selectedItem.poster_path,
         media_type: selectedItem.media_type,
