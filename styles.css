@@ -984,6 +984,73 @@ footer img:hover{
   font-size: 2rem;
 }
 
+/* ===== Countdown Form Card ===== */
+.countdown-form-card {
+  background: #ffffff;
+  border-radius: 18px;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+  padding: 24px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.countdown-form-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.09);
+}
+
+/* Title */
+.countdown-form-card h4 {
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+
+/* Inputs */
+.countdown-form-card .form-control {
+  border-radius: 12px;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  padding: 10px 12px;
+  font-size: 0.95rem;
+  transition: all 0.2s ease;
+}
+
+.countdown-form-card .form-control:focus {
+  border-color: #6c63ff;
+  box-shadow: 0 0 0 3px rgba(108, 99, 255, 0.15);
+}
+
+/* Button */
+.countdown-form-card .btn-primary {
+  border-radius: 12px;
+  background: #6c63ff;
+  border: none;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.countdown-form-card .btn-primary:hover {
+  background: #5a52e0;
+  transform: scale(1.02);
+}
+
+/* Checkbox styling */
+.countdown-form-card .form-check {
+  margin-top: 10px;
+  align-items: left;
+  text-align: left;
+}
+
+.countdown-form-card .form-check-input {
+  border-radius: 6px;
+}
+
+.countdown-form-card .form-check-input:checked {
+  background-color: #6c63ff;
+  border-color: #6c63ff;
+}
+
+
+
   @keyframes fallAway {
     0% { transform: translateX(-50%) translateY(0); opacity: 1; }
     100% { transform: translateX(-50%) translateY(380px); opacity: 1; }
