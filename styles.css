@@ -1049,7 +1049,52 @@ footer img:hover{
   border-color: #6c63ff;
 }
 
+/* hide by default */
+.delete-btn {
+  position: absolute;
+  top: 8px;
+  right: 10px;
+  border: none;
+  background: transparent;
+  font-size: 1.2rem;
+  color: #999;
+  opacity: 0;
+  cursor: pointer;
+  transition: 0.2s;
+}
 
+/* show on hover */
+.countdown-card:hover .delete-btn {
+  opacity: 1;
+}
+
+/* hover effect */
+.delete-btn:hover {
+  color: red;
+  transform: scale(1.2);
+}
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.modal-box {
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  width: 300px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+.hidden {
+  display: none;
+}
 
   @keyframes fallAway {
     0% { transform: translateX(-50%) translateY(0); opacity: 1; }

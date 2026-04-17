@@ -5,7 +5,31 @@ const supabaseClient = supabase.createClient(supabaseUrl, supabaseKey);
 const container = document.getElementById("countdown-container");
 
 
-  async function loadCountdowns() {
+let deleteId = null;
+
+const modal = document.getElementById("deleteModal");
+const cancelBtn = document.getElementById("cancelDelete");
+const confirmBtn = document.getElementById("confirmDelete");
+
+// 🧠 Handles recurring logic cleanly
+function getAdjustedDate(baseDate, recurring) {
+  const now = new Date();
+  let target = new Date(baseDate);
+
+  if (recurring) {
+    target.setFullYear(now.getFullYear());
+
+    if (target < now) {
+      target.setFullYear(now.getFullYear() + 1);
+    }
+  }
+
+  return target;
+}
+
+
+// 🔁 Load + sort countdowns
+async function loadCountdowns() {
   const { data, error } = await supabaseClient
     .from("countdowns")
     .select("*");
@@ -15,112 +39,136 @@ const container = document.getElementById("countdown-container");
     return;
   }
 
-  // 🧠 STEP 1: compute next occurrence date for each item
+  const now = new Date();
+
   const enriched = data.map(item => {
-    const nextDate = item.recurring
-      ? getNextDate(item.month, item.day)
-      : new Date(item.date);
+    const targetDate = getAdjustedDate(item.date, item.recurring);
 
     return {
       ...item,
-      nextTimestamp: nextDate.getTime()
+      targetDate,
+      isPast: !item.recurring && targetDate < now
     };
   });
 
-  // 🧠 STEP 2: sort by closest date
-  enriched.sort((a, b) => a.nextTimestamp - b.nextTimestamp);
+  // ✅ Proper sorting
+  enriched.sort((a, b) => {
+    if (a.isPast && !b.isPast) return 1;
+    if (!a.isPast && b.isPast) return -1;
+    return a.targetDate - b.targetDate;
+  });
 
   container.innerHTML = "";
 
   enriched.forEach(item => {
-    const col = document.createElement("div");
-    col.className = "col-md-4";
+  const col = document.createElement("div");
+  col.className = "col-md-4";
 
-    col.innerHTML = `
-      <div class="countdown-card p-4">
-        <h4>${item.title}</h4>
-        <p class="countdown"
-          data-month="${item.month}"
-          data-day="${item.day}"
-          data-recurring="${item.recurring}">
-        </p>
-      </div>
-    `;
+  col.innerHTML = `
+    <div class="countdown-card p-4 position-relative">
+      
+      <button class="delete-btn" data-id="${item.id}">&times;</button>
 
-    container.appendChild(col);
-  });
+      <h4>${item.title}</h4>
+      <p class="countdown"
+        data-date="${item.date}"
+        data-recurring="${item.recurring}">
+      </p>
 
-  updateCountdowns();
+      ${item.isPast ? "<small style='opacity:.6;'>Past</small>" : ""}
+    </div>
+  `;
+
+  container.appendChild(col);
+});
+
+updateCountdowns();
 }
 
-  function updateCountdowns() {
-    const elements = document.querySelectorAll(".countdown");
 
-    elements.forEach(el => {
-      const month = parseInt(el.dataset.month);
-      const day = parseInt(el.dataset.day);
-      const recurring = el.dataset.recurring === "true";
+// ⏱️ Update countdown timers
+function updateCountdowns() {
+  const elements = document.querySelectorAll(".countdown");
 
-      let targetDate = recurring
-        ? getNextDate(month, day)
-        : new Date(el.dataset.date);
+  elements.forEach(el => {
+    const recurring = el.dataset.recurring === "true";
+    const baseDate = el.dataset.date;
 
-      const now = new Date();
-      const diff = targetDate - now;
+    const targetDate = getAdjustedDate(baseDate, recurring);
 
-      if (diff <= 0) {
-        el.innerHTML = "It's here! 🎉";
-        return;
-      }
-
-      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-      const minutes = Math.floor((diff / (1000 * 60)) % 60);
-
-      el.innerHTML = `${days}d ${hours}h ${minutes}m`;
-    });
-  }
-
-  function getNextDate(month, day) {
     const now = new Date();
-    let year = now.getFullYear();
+    const diff = targetDate - now;
 
-    let next = new Date(year, month - 1, day);
-
-    if (next < now) {
-      next = new Date(year + 1, month - 1, day);
+    if (diff <= 0 && !recurring) {
+      el.innerHTML = "It's here! 🎉";
+      return;
     }
 
-    return next;
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+    const minutes = Math.floor((diff / (1000 * 60)) % 60);
+
+    el.innerHTML = `${days}d ${hours}h ${minutes}m`;
+  });
+}
+
+
+// ➕ Add new countdown
+document.getElementById("addCountdownBtn").addEventListener("click", async () => {
+  const title = document.getElementById("countdownTitle").value.trim();
+  const date = document.getElementById("countdownDate").value;
+  const recurring = document.getElementById("isRecurring").checked;
+
+  if (!title || !date) {
+    alert("Please fill out all fields.");
+    return;
   }
 
-  document.getElementById("addCountdownBtn").addEventListener("click", async () => {
-    const title = document.getElementById("countdownTitle").value.trim();
-    const month = parseInt(document.getElementById("countdownMonth").value);
-    const day = parseInt(document.getElementById("countdownDay").value);
-    const recurring = document.getElementById("isRecurring").checked;
+  const { error } = await supabaseClient
+    .from("countdowns")
+    .insert([{ title, date, recurring }]);
 
-    if (!title || !month || !day) {
-      alert("Please fill out all fields.");
-      return;
-    }
+  if (error) {
+    console.error(error);
+    alert("Error adding countdown.");
+    return;
+  }
 
-    const { error } = await supabaseClient
-      .from("countdowns")
-      .insert([{ title, month, day, recurring }]);
-
-    if (error) {
-      console.error(error);
-      alert("Error adding countdown.");
-      return;
-    }
-
-    loadCountdowns();
-  });
-
-  // initial load
   loadCountdowns();
+});
 
-  // update every minute
-  setInterval(updateCountdowns, 60000);
+document.addEventListener("click", (e) => {
+  if (e.target.classList.contains("delete-btn")) {
+    deleteId = e.target.dataset.id;
+    modal.classList.remove("hidden");
+  }
+});
+cancelBtn.addEventListener("click", () => {
+  deleteId = null;
+  modal.classList.add("hidden");
+});
 
+confirmBtn.addEventListener("click", async () => {
+  if (!deleteId) return;
+
+  const { error } = await supabaseClient
+    .from("countdowns")
+    .delete()
+    .eq("id", deleteId);
+
+  if (error) {
+    console.error(error);
+    alert("Error deleting countdown.");
+    return;
+  }
+
+  deleteId = null;
+  modal.classList.add("hidden");
+  loadCountdowns();
+});
+
+// 🚀 Initial load
+loadCountdowns();
+
+// 🔁 Update every minute
+setInterval(updateCountdowns, 60000);
